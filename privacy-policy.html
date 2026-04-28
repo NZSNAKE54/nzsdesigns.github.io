@@ -14,21 +14,12 @@
     padding: 2rem 1rem;
   }
   .wrap { max-width: 680px; margin: 0 auto; }
-  .logo {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
+  .logo { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   .logo span { color: #1D9E75; }
   .dev { font-size: 13px; color: #7A7570; margin-bottom: 2rem; }
   h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
   .updated { font-size: 13px; color: #7A7570; margin-bottom: 2rem; }
-  h2 {
-    font-size: 17px;
-    font-weight: 600;
-    margin: 2rem 0 8px;
-    color: #1A1A1A;
-  }
+  h2 { font-size: 17px; font-weight: 600; margin: 2rem 0 8px; color: #1A1A1A; }
   p { margin-bottom: 1rem; font-size: 15px; color: #2A2A2A; }
   ul { margin: 0 0 1rem 1.5rem; }
   li { font-size: 15px; color: #2A2A2A; margin-bottom: 6px; }
@@ -40,6 +31,15 @@
     margin: 1rem 0;
     font-size: 14px;
     color: #0F6E56;
+  }
+  .important {
+    background: #FFF8E1;
+    border-left: 4px solid #F59E0B;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 1rem 0;
+    font-size: 14px;
+    color: #78350F;
   }
   .contact {
     background: white;
@@ -53,6 +53,9 @@
   a:hover { text-decoration: underline; }
   hr { border: none; border-top: 1px solid rgba(0,0,0,0.08); margin: 2rem 0; }
   footer { font-size: 12px; color: #7A7570; margin-top: 2rem; text-align: center; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 14px; }
+  th { background: #F0F0EC; text-align: left; padding: 8px 12px; font-weight: 600; }
+  td { padding: 8px 12px; border-top: 1px solid rgba(0,0,0,0.07); color: #2A2A2A; vertical-align: top; }
 </style>
 </head>
 <body>
@@ -65,82 +68,89 @@
   <div class="updated">Last updated: April 2026</div>
 
   <div class="highlight">
-    HomeSwipe NZ is built with your privacy in mind. We do not collect, sell, or share your personal information. All your swipe decisions and notes are stored only on your device.
+    HomeSwipe NZ is built with your privacy in mind. We do not collect your name, email, phone number, or location. We use an anonymous device identifier to power app features. Notes you write are automatically scanned to remove any personal details before they are ever shared with anyone.
   </div>
 
   <h2>Who we are</h2>
-  <p>HomeSwipe NZ is a mobile application developed by NZSDesigns, a sole trader based in New Zealand. The app helps New Zealand home buyers browse, shortlist, and track residential property listings.</p>
+  <p>HomeSwipe NZ is a mobile application developed by NZSDesigns, a sole trader based in New Zealand. The app helps New Zealand and Australian home buyers browse, shortlist, and track residential property listings. This policy applies to all users of the app.</p>
 
-  <h2>What data we collect</h2>
-  <p>HomeSwipe NZ collects no personal data from users. Specifically:</p>
-  <ul>
-    <li>We do not collect your name, email address, or contact details</li>
-    <li>We do not collect your location or GPS data</li>
-    <li>We do not use advertising identifiers or tracking pixels</li>
-    <li>We do not collect device identifiers</li>
-    <li>We do not use analytics or usage tracking services</li>
-    <li>We do not collect any financial information</li>
-  </ul>
+  <h2>What data we collect and why</h2>
+  <table>
+    <tr><th>Data</th><th>Why we collect it</th><th>Stored where</th></tr>
+    <tr><td><strong>Anonymous device ID</strong></td><td>Identifies your session without linking to any personal identity. Never shared externally.</td><td>Our servers (Supabase)</td></tr>
+    <tr><td><strong>Swipe decisions</strong> (liked / disliked listings)</td><td>Powers the Partner feature and used for anonymised market research (see below).</td><td>Our servers (Supabase)</td></tr>
+    <tr><td><strong>Notes on listings</strong></td><td>Shared between you and your partner within a session. PII is automatically redacted before any external use.</td><td>Our servers (Supabase)</td></tr>
+    <tr><td><strong>Push notification token (FCM)</strong></td><td>Used to send you new listing alerts if you enable them. Never shared with third parties.</td><td>Our servers (Supabase) + Firebase</td></tr>
+    <tr><td><strong>Notification preferences</strong></td><td>Stores your alert settings so notifications match your criteria.</td><td>Our servers (Supabase)</td></tr>
+  </table>
+  <p>We do not collect your name, email address, phone number, GPS location, or any government-issued identifiers.</p>
 
-  <h2>Data stored on your device</h2>
-  <p>The following information is stored locally on your device only and never transmitted to any server:</p>
+  <h2>Anonymous device identifier</h2>
+  <p>When you first open HomeSwipe NZ, a random anonymous ID is generated for your device. This ID has no connection to your identity. It is used to save your swipe history, link you to a Partner session, and manage notification preferences. If you uninstall and reinstall the app, a new device ID is generated.</p>
+
+  <h2>Partner sessions</h2>
+  <p>The Partner feature lets two people browse listings together and see where their preferences match. A session is created on our servers and both devices are linked via a shared code. You can delete your session and all associated data at any time from within the app.</p>
+
+  <h2>Notes and automatic PII redaction</h2>
+  <p>Notes you write on listings are stored on our servers. Before any note is used for anything other than displaying it back to you, it is automatically scanned and personal information is replaced with a placeholder:</p>
   <ul>
-    <li>Your swipe decisions (liked and passed properties)</li>
-    <li>Personal notes you add to listings</li>
-    <li>Your filter preferences (region, price range, bedrooms etc.)</li>
+    <li>Names &rarr; <strong>[NAME]</strong></li>
+    <li>Phone numbers &rarr; <strong>[PHONE]</strong></li>
+    <li>Email addresses &rarr; <strong>[EMAIL]</strong></li>
+    <li>Street addresses &rarr; <strong>[ADDRESS]</strong></li>
   </ul>
-  <p>This data exists solely on your device. If you uninstall the app or clear its data, this information is permanently deleted.</p>
+  <p>You will always see your original note within the app. The redacted version is the only version ever used outside your session.</p>
+
+  <h2>Anonymised market research data</h2>
+  <div class="important">
+    By using HomeSwipe NZ, you agree that your anonymised, aggregated swipe data and redacted notes may be shared with third parties (such as real estate agents and property market researchers) for market research purposes. No personal information, device identifiers, or raw notes are ever included in this data.
+  </div>
+  <p>This data contains no device IDs, user IDs, or session IDs. It only includes listings with a minimum number of swipes so individual responses are never singled out, and only includes notes after automatic PII redaction. Recipients see totals and patterns, not individual decisions.</p>
+  <p>To opt out, email <a href="mailto:nzsdesigns.app@gmail.com">nzsdesigns.app@gmail.com</a>.</p>
+
+  <h2>Push notifications</h2>
+  <p>If you enable new listing alerts, we store a Firebase Cloud Messaging (FCM) token on our servers. This token is used only to deliver push notifications to your device and is never shared with third parties.</p>
 
   <h2>Property listing data</h2>
-  <p>HomeSwipe NZ retrieves residential property listings from the Trade Me Property API. When the app fetches listings, a standard read-only API request is made to Trade Me's servers. This request includes your selected search filters (such as region and price range) but contains no personal information about you.</p>
-  <p>Listing data is cached on our backend server for up to 5 minutes for performance purposes only and is not stored permanently. We do not modify, resell, or share any listing data obtained from Trade Me.</p>
-  <p>Trade Me's own privacy policy applies to their services and can be found at <a href="https://www.trademe.co.nz/trust-safety/privacy-policy" target="_blank">trademe.co.nz/trust-safety/privacy-policy</a>.</p>
-
-  <h2>Email address (optional)</h2>
-  <p>If you choose to use the "Email my shortlist" feature, you will be prompted to enter an email address. This address is used solely to pre-fill your device's mail application with your shortlist. HomeSwipe NZ does not store, transmit, or have any access to your email address — the email is composed and sent entirely by your own mail application.</p>
+  <p>HomeSwipe NZ retrieves listings from the Trade Me Property API. Search requests include your selected filters but contain no personal information. Listing data is cached on our servers for up to 5 minutes only. Trade Me's privacy policy applies: <a href="https://www.trademe.co.nz/trust-safety/privacy-policy" target="_blank">trademe.co.nz</a>.</p>
 
   <h2>Third-party services</h2>
-  <p>HomeSwipe NZ uses the following third-party services:</p>
   <ul>
-    <li><strong>Trade Me Property API</strong> — to source residential property listings for New Zealand. Trade Me's privacy policy applies to their API.</li>
-    <li><strong>OpenStreetMap / Leaflet</strong> — to display an interactive map of liked properties. No personal data is sent to OpenStreetMap. Their privacy policy can be found at <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">osmfoundation.org</a>.</li>
-    <li><strong>Unsplash</strong> — property photos used in demo mode only. Unsplash's privacy policy applies to photo delivery.</li>
+    <li><strong>Supabase</strong> — database provider, Asia-Pacific region. <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></li>
+    <li><strong>Firebase (Google)</strong> — push notification delivery only.</li>
+    <li><strong>Railway</strong> — backend server hosting. No personal data stored at server layer.</li>
+    <li><strong>Trade Me Property API</strong> — source of property listings.</li>
+    <li><strong>OpenStreetMap / Leaflet</strong> — map display. No personal data sent.</li>
   </ul>
 
-  <h2>Children's privacy</h2>
-  <p>HomeSwipe NZ is not directed at children under the age of 13 and we do not knowingly collect any data from children.</p>
-
-  <h2>Data security</h2>
-  <p>All communication between the HomeSwipe NZ app and our backend server uses HTTPS encryption. Since we do not collect personal data, there is no personal data at risk of exposure.</p>
+  <h2>Data retention</h2>
+  <p>We retain your data for as long as you use the app. If you have not used the app for 12 months, your anonymous session data may be deleted.</p>
 
   <h2>Data deletion</h2>
-  <p>Since all personal data (swipe decisions, notes, preferences) is stored locally on your device, you can delete it at any time by:</p>
-  <ul>
-    <li>Going to your phone's Settings → Apps → HomeSwipe NZ → Clear Data</li>
-    <li>Uninstalling the app</li>
-  </ul>
+  <p>You can delete your session from within the app at any time. To request full deletion of all data, email <a href="mailto:nzsdesigns.app@gmail.com">nzsdesigns.app@gmail.com</a> and we will action it within 30 days.</p>
+
+  <h2>Children's privacy</h2>
+  <p>HomeSwipe NZ is not directed at children under 13 and we do not knowingly collect data from children.</p>
+
+  <h2>Data security</h2>
+  <p>All communication uses HTTPS encryption. Database access is controlled by row-level security policies. We do not store passwords or financial information.</p>
+
+  <h2>Your rights</h2>
+  <p><strong>New Zealand users</strong> — under the Privacy Act 2020, you have the right to access and correct information we hold. Contact us with your device ID and we will assist you.</p>
+  <p><strong>Australian users</strong> — under the Privacy Act 1988 (Cth) and Australian Privacy Principles, you have similar rights of access and correction.</p>
 
   <h2>Changes to this policy</h2>
-  <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of HomeSwipe NZ after changes are posted constitutes your acceptance of the updated policy.</p>
-
-  <h2>Your rights under the Privacy Act 2020</h2>
-  <p>As a New Zealand resident, you have rights under the Privacy Act 2020. Since HomeSwipe NZ does not collect personal information, there is no personal information held by us to access, correct, or delete. If you have any concerns, please contact us using the details below.</p>
+  <p>We may update this policy from time to time. Changes will be reflected on this page with an updated date. Continued use of the app constitutes acceptance of the updated policy.</p>
 
   <hr>
 
   <div class="contact">
     <h2>Contact us</h2>
-    <p>If you have any questions or concerns about this privacy policy or how HomeSwipe NZ handles data, please contact us:</p>
-    <p>
-      <strong>NZSDesigns</strong><br>
-      Email: <a href="mailto:nzsdesigns.app@gmail.com">nzsdesigns.app@gmail.com</a><br>
-      New Zealand
-    </p>
+    <p>Questions, opt-out requests, or data deletion requests:</p>
+    <p><strong>NZSDesigns</strong><br>Email: <a href="mailto:nzsdesigns.app@gmail.com">nzsdesigns.app@gmail.com</a><br>New Zealand</p>
   </div>
 
-  <footer>
-    &copy; 2026 NZSDesigns. HomeSwipe NZ. All rights reserved.
-  </footer>
+  <footer>&copy; 2026 NZSDesigns. HomeSwipe NZ. All rights reserved.</footer>
 
 </div>
 </body>
